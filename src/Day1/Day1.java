@@ -15,29 +15,25 @@ public class Day1 {
             HashMap<Integer, Integer> map = new HashMap<>();
 
             while ((line = br.readLine()) != null) {
-                array[i] = Integer.parseInt(line);
-                map.put(Integer.parseInt(line), i);
-                i++;
-            }
-
-            if (numOfSolns == 2) {
-                for (int value : array) {
-                    int complement = target - value;
+                int num = Integer.parseInt(line);
+                array[i] = num;
+                if (numOfSolns == 2) {
+                    int complement = target - num;
                     if (map.containsKey(complement)) {
-                        return new int[]{complement, value};
+                        return new int[]{complement, num};
                     }
-                }
-            } else if (numOfSolns == 3) {
-                for (int value : array) {
-                    int secondTarget = target - value;
+                } else if (numOfSolns == 3) {
+                    int secondTarget = target - num;
                     for (int value2 : array) {
                         int secondComplement = secondTarget - value2;
                         if (map.containsKey(value2) && map.containsKey(secondComplement)) {
-                            return new int[]{value2, secondComplement, value};
+                            return new int[]{value2, secondComplement, num};
                         }
-
                     }
+
                 }
+                map.put(num, i);
+                i++;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
