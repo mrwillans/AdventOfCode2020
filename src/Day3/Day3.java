@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Day3 {
 
-    int getTrees(int xStep, int yStep) {
+    private int getTrees(int xStep, int yStep) {
         try {
             String line;
             ArrayList<String> forest = new ArrayList<>();
