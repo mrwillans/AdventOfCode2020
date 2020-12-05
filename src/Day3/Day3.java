@@ -42,7 +42,7 @@ public class Day3 {
         //part 1
         System.out.println(day3.getTrees(3, 1));
 
-        //part 2
+        //part 2.txt
         double one = day3.getTrees(1, 1);
         double two = day3.getTrees(3, 1);
         double three = day3.getTrees(5, 1);
