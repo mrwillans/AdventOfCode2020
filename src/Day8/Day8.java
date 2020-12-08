@@ -47,8 +47,8 @@ public class Day8 {
             if (part.equals("part2")) {
                 for (int i = 0; i < instructions.size(); i++) {
                     LinkedList<String> instructionsCopy = new LinkedList<>(instructions);
-
                     Set<Integer> usedInstructionsPart2 = new HashSet<>();
+
                     int accumalatorPart2 = 0;
                     if (instructionsCopy.get(i).contains("nop") || instructionsCopy.get(i).contains("jmp")) {
                         if (instructionsCopy.get(i).contains("nop")) {
