@@ -16,7 +16,6 @@ public class Day8 {
             while ((line = br.readLine()) != null) {
                 instructions.add(line);
             }
-
             int accumulator = 0;
             Set<Integer> usedInstructions = new HashSet<>();
             int jump = 0;
