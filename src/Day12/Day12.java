@@ -39,7 +39,41 @@ class BoatCoords<Integer> {
         this.y = y;
     }
 }
+class WaypointCoords<Integer> {
+    int direction;
+    int x;
+    int y;
 
+    public WaypointCoords(int direction, int x, int y) {
+        this.direction = direction;
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+}
 public class Day12 {
 
     BoatCoords<Integer> getCoords(ArrayList<String> instructions) {
