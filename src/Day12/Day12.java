@@ -39,6 +39,7 @@ class BoatCoords<Integer> {
         this.y = y;
     }
 }
+
 class WaypointCoords<Integer> {
     int direction;
     int x;
@@ -74,9 +75,10 @@ class WaypointCoords<Integer> {
         this.y = y;
     }
 }
+
 public class Day12 {
 
-    BoatCoords<Integer> getCoords(ArrayList<String> instructions) {
+    BoatCoords getCoords(ArrayList<String> instructions) {
 
         BoatCoords boatCoords = new BoatCoords(90, 0, 0);
         for (String instr : instructions) {
@@ -85,7 +87,7 @@ public class Day12 {
         return boatCoords;
     }
 
-    public BoatCoords applyInstructions(String instr, BoatCoords boatCoords) {
+    BoatCoords applyInstructions(String instr, BoatCoords boatCoords) {
         String direction = Character.toString(instr.charAt(0));
         switch (direction) {
             case "N":
@@ -102,19 +104,19 @@ public class Day12 {
                 break;
             case "L":
                 boatCoords.setDirection(boatCoords.getDirection() - Integer.parseInt(instr.replace("L", "")));
-                if(boatCoords.direction >= 360){
+                if (boatCoords.direction >= 360) {
                     boatCoords.setDirection(boatCoords.direction - 360);
                 }
-                if(boatCoords.direction < 0){
+                if (boatCoords.direction < 0) {
                     boatCoords.setDirection(boatCoords.direction + 360);
                 }
                 break;
             case "R":
                 boatCoords.setDirection(boatCoords.getDirection() + Integer.parseInt(instr.replace("R", "")));
-                if(boatCoords.direction >= 360){
+                if (boatCoords.direction >= 360) {
                     boatCoords.setDirection(boatCoords.direction - 360);
                 }
-                if(boatCoords.direction < 0){
+                if (boatCoords.direction < 0) {
                     boatCoords.setDirection(boatCoords.direction + 360);
                 }
                 break;
@@ -136,6 +138,58 @@ public class Day12 {
         }
         return boatCoords;
     }
+
+//    int applyInstructionsPart2(String instr, BoatCoords boatCoords, WaypointCoords waypointCoords) {
+//        String direction = Character.toString(instr.charAt(0));
+//        switch (direction) {
+//            case "N":
+//                waypointCoords.setY(waypointCoords.y + Integer.parseInt(instr.replace("N", "")));
+//                break;
+//            case "S":
+//                waypointCoords.setY(waypointCoords.y - Integer.parseInt(instr.replace("S", "")));
+//                break;
+//            case "E":
+//                waypointCoords.setX(waypointCoords.x + Integer.parseInt(instr.replace("E", "")));
+//                break;
+//            case "W":
+//                waypointCoords.setX(waypointCoords.x - Integer.parseInt(instr.replace("W", "")));
+//                break;
+//            case "L":
+//                boatCoords.setDirection(boatCoords.getDirection() - Integer.parseInt(instr.replace("L", "")));
+//                if (boatCoords.direction >= 360) {
+//                    boatCoords.setDirection(boatCoords.direction - 360);
+//                }
+//                if (boatCoords.direction < 0) {
+//                    boatCoords.setDirection(boatCoords.direction + 360);
+//                }
+//                break;
+//            case "R":
+//                boatCoords.setDirection(boatCoords.getDirection() + Integer.parseInt(instr.replace("R", "")));
+//                if (boatCoords.direction >= 360) {
+//                    boatCoords.setDirection(boatCoords.direction - 360);
+//                }
+//                if (boatCoords.direction < 0) {
+//                    boatCoords.setDirection(boatCoords.direction + 360);
+//                }
+//                break;
+//            case "F":
+//                if (boatCoords.direction == 0) {
+//                    boatCoords.setY(boatCoords.y + Integer.parseInt(instr.replace("F", "")));
+//                }
+//                if (boatCoords.direction == 90) {
+//                    boatCoords.setX(boatCoords.x + Integer.parseInt(instr.replace("F", "")));
+//                }
+//                if (boatCoords.direction == 180) {
+//                    boatCoords.setY(boatCoords.y - Integer.parseInt(instr.replace("F", "")));
+//                }
+//                if (boatCoords.direction == 270) {
+//                    boatCoords.setX(boatCoords.x - Integer.parseInt(instr.replace("F", "")));
+//                }
+//                break;
+//
+//        }
+//        return boatCoords;
+//    }
 
     public static void main(String[] args) {
         ArrayList<String> instructions = new ArrayList<>();
