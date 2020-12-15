@@ -27,7 +27,7 @@ public class Day15 {
 
     public static void main(String[] args) {
 
-        Long[] start = new Long[]{0L, 8L, 15L, 2L, 12L, 1L, 4L}; //4};
+        Long[] start = new Long[]{0L, 8L, 15L, 2L, 12L, 1L, 4L};
 
         HashMap<Long, ArrayList<Long>> map = new HashMap<>();
 
