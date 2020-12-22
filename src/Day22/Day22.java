@@ -2,14 +2,14 @@ package Day22;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
 
 public class Day22 {
 
-    LinkedList<Integer> splitInput(String input) {
+    private LinkedList<Integer> splitInput(String input) {
         LinkedList<Integer> queue = new LinkedList<>();
         String[] nums = input.split("\n");
         for (int i = 1; i < nums.length; i++) {
@@ -18,7 +18,7 @@ public class Day22 {
         return queue;
     }
 
-    LinkedList<Integer> playGame(LinkedList<Integer> player1, LinkedList<Integer> player2) {
+    private LinkedList<Integer> playGame(LinkedList<Integer> player1, LinkedList<Integer> player2) {
         while (!player1.isEmpty() && !player2.isEmpty()) {
             int p1 = player1.remove();
             int p2 = player2.remove();
@@ -39,6 +39,58 @@ public class Day22 {
         }
     }
 
+    private String playGameRecursive(LinkedList<Integer> player1, LinkedList<Integer> player2) {
+        HashMap<String, ArrayList<LinkedList<Integer>>> playedHands = new HashMap<>();
+        playedHands.put("player1", new ArrayList<>());
+        playedHands.put("player2", new ArrayList<>());
+
+        while (!player1.isEmpty() && !player2.isEmpty()) {
+            if (playedHands.get("player1").contains(player1) && playedHands.get("player2").contains(player2)) {
+                return "player1";
+            }
+
+            playedHands.get("player1").add(new LinkedList<>(player1));
+            playedHands.get("player2").add(new LinkedList<>(player2));
+
+            int p1 = player1.remove();
+            int p2 = player2.remove();
+
+            if (player1.size() > p1 - 1 && player2.size() > p2 - 1) {
+                String winner = playGameRecursive(new LinkedList<>(player1.subList(0, p1)), new LinkedList<>(player2.subList(0, p2)));
+                if (winner.equals("player1")) {
+                    player1.add(p1);
+                    player1.add(p2);
+                } else {
+                    player2.add(p2);
+                    player2.add(p1);
+                }
+                continue;
+            }
+
+            if (p1 > p2) {
+                player1.add(p1);
+                player1.add(p2);
+            } else if (p2 > p1) {
+                player2.add(p2);
+                player2.add(p1);
+            }
+        }
+        Long sum = 0L;
+        if (!player1.isEmpty()) {
+            for (int i = 1; i <= player1.size(); i++) {
+                sum += (player1.get(player1.size() - i) * i);
+            }
+            System.out.println(sum);
+            return "player1";
+        } else {
+            for (int i = 1; i <= player2.size(); i++) {
+                sum += (player2.get(player2.size() - i) * i);
+            }
+            System.out.println(sum);
+            return "player2";
+        }
+    }
+
     public static void main(String[] args) {
         String input = "";
         try {
@@ -54,6 +106,9 @@ public class Day22 {
         Day22 day22 = new Day22();
         LinkedList<Integer> player1 = day22.splitInput(input.split("\n\n")[0]);
         LinkedList<Integer> player2 = day22.splitInput(input.split("\n\n")[1]);
+        LinkedList<Integer> player1Copy = new LinkedList<>(player1);
+        LinkedList<Integer> player2Copy = new LinkedList<>(player2);
+
 
         LinkedList<Integer> winner = day22.playGame(player1, player2);
 
@@ -61,7 +116,9 @@ public class Day22 {
         for (int i = 1; i <= winner.size(); i++) {
             sum += (winner.get(winner.size() - i) * i);
         }
-        System.out.println(sum);
+        System.out.println("SUMMMMMMMMMMMMMMMMM " +sum);
+
+        System.out.println(day22.playGameRecursive(player1Copy, player2Copy));
     }
 }
 
