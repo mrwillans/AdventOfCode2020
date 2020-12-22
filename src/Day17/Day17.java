@@ -64,7 +64,7 @@ public class Day17 {
 
     }
 
-    public void part2(ArrayList<String> input) {
+    private void part2(ArrayList<String> input) {
         char[][][][] grid;
         grid = new char[input.size() + 20][input.size() + 20][input.size() + 20][input.size() + 20];
         for (int w = 0; w < grid.length; w++) {
